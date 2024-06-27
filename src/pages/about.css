@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global */
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Section About */
+.bg-pink-100 {
+  background-color: #fde6e6;
+  padding: 4rem 0;
+}
+
+.text-gray-700 {
+  color: #4a5568;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.font-bold {
+  font-weight: 600; /* Update to 600 for boldness */
+}
+
+/* Additional Styling */
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.about-description {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.about-highlight {
+  color: #e53e3e; /* Red highlight color */
+  font-weight: 700;
+}
+
+.about-cta {
+  margin-top: 2rem;
+}
+
+.about-cta a {
+  color: #3182ce; /* Blue link color */
+  text-decoration: underline;
+}
+
+.about-cta a:hover {
+  text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-content {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-description {
+    font-size: 1rem;
+  }
+}
