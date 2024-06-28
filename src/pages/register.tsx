@@ -1,7 +1,10 @@
+// RegisterForm.tsx
+
 import { Component, createSignal } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
+import { fetchUsers, User } from '../fetchData';
 import './register.css';
 
 interface FormData {
@@ -34,9 +37,14 @@ const RegisterForm: Component = () => {
 
     try {
       // Simpan data ke localStorage
-      localStorage.setItem('user', JSON.stringify(formData));
+      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+      const updatedUsers = [...existingUsers, formData];
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-      // Kirim data ke server
+      // Simpan data ke dummy JSON (jika diperlukan)
+      saveToDummyJSON(updatedUsers);
+
+      // Kirim data ke server (contoh)
       const response = await fetch('http://localhost:3000/api/register', {
         method: 'POST',
         headers: {
@@ -46,15 +54,42 @@ const RegisterForm: Component = () => {
       });
 
       if (response.ok) {
-        alert('Registration successful');
+        alert('Pendaftaran berhasil');
         navigate('/dashboard'); // Arahkan ke halaman dashboard setelah pendaftaran berhasil
       } else {
-        alert('Registration failed');
+        alert('Pendaftaran gagal');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred');
+      alert('Terjadi kesalahan');
     }
+  };
+
+  const saveToDummyJSON = (users: User[]) => {
+    // Contoh implementasi untuk menyimpan ke dummy JSON
+    // Di sini Anda dapat menyesuaikan sesuai kebutuhan
+    console.log('Simpan ke dummy JSON:', users);
+    // Misalnya, simpan ke file atau basis data dummy
+  };
+
+  const handleSave = () => {
+    const formData: FormData = {
+      namadepan: namadepan(),
+      namabelakang: namabelakang(),
+      email: email(),
+      katasandi: katasandi()
+    };
+
+    // Simpan data ke localStorage
+    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const updatedUsers = [...existingUsers, formData];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+    // Simpan data ke dummy JSON
+    saveToDummyJSON(updatedUsers);
+
+    alert('Berhasil Masuk!');
+    navigate('/dashboard');
   };
 
   return (
@@ -125,7 +160,7 @@ const RegisterForm: Component = () => {
             />
           </div>
           <div class="submit-wrapper">
-            <button type="submit" class="submit-btn">Daftar</button>
+            <button type="button" class="submit-btn" onClick={handleSave}>Daftar</button>
             <p class="login-link">
               Sudah memiliki akun? <a href="/login" class="login-anchor">Masuk</a>
             </p>

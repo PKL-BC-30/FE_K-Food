@@ -1,8 +1,16 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, onCleanup } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
+import { fetchUsers, User } from '../fetchData';
+import CryptoJS from 'crypto-js';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './login.css';
+
+// Dummy user data for authentication (replace with actual JSON data or fetch function)
+const users = [
+  { username: 'user1', password: 'password123' },
+  { username: 'user2', password: 'password456' }
+];
 
 interface FormData {
   email: string;
@@ -15,6 +23,11 @@ const LoginForm: Component = () => {
   const [showPassword, setShowPassword] = createSignal(false);
   const navigate = useNavigate();
 
+  // Cleanup function to handle component unmounting
+  onCleanup(() => {
+    // Perform cleanup tasks if necessary
+  });
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword());
   };
@@ -26,8 +39,21 @@ const LoginForm: Component = () => {
       katasandi: katasandi()
     };
 
+    const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
+
     try {
-      localStorage.setItem('user', JSON.stringify(formData))
+      const users: User[] = await fetchUsers();
+      const foundUser = users.find(user => user.email === email());
+      
+      // Save the user data to local storage as an array
+      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+      const updatedUsers = [...existingUsers, formData];
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+      // Update JSON dummy data (example)
+      const dummyData = [...users, formData];
+      console.log(dummyData); // Log the updated dummy data
+
       const response = await fetch('http://localhost:3000/api/login', {
         method: 'POST',
         headers: {
@@ -46,6 +72,25 @@ const LoginForm: Component = () => {
       console.error('Error:', error);
       alert('An error occurred');
     }
+  };
+
+  const handleSave = () => {
+    const formData: FormData = {
+      email: email(),
+      katasandi: katasandi()
+    };
+
+    // Save the user data to local storage as an array
+    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const updatedUsers = [...existingUsers, formData];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+    // Update JSON dummy data (example)
+    const dummyData = [...users, formData];
+    console.log(dummyData); // Log the updated dummy data
+
+    alert('Berhasil masuk!');
+    navigate('/dashboard');
   };
 
   return (
@@ -90,7 +135,7 @@ const LoginForm: Component = () => {
             />
           </div>
           <div class="submit-wrapper">
-            <button type="submit" class="submit-btn">Masuk</button>
+            <button type="button" class="submit-btn" onClick={handleSave}>Masuk</button>
           </div>
         </form>
       </div>
