@@ -1,30 +1,96 @@
-import { Component } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
+import { useNavigate } from '@solidjs/router';
+import eyeIcon from '/src/pages/images/eye.png';
+import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './login.css';
 
+interface FormData {
+  email: string;
+  katasandi: string;
+}
+
 const LoginForm: Component = () => {
+  const [email, setEmail] = createSignal("");
+  const [katasandi, setKataSandi] = createSignal("");
+  const [showPassword, setShowPassword] = createSignal(false);
+  const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword());
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData: FormData = {
+      email: email(),
+      katasandi: katasandi()
+    };
+
+    try {
+      localStorage.setItem('user', JSON.stringify(formData))
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('Berhasil Masuk!');
+        navigate('/dashboard'); // Redirect to dashboard
+      } else {
+        alert('Gagal Masuk!');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred');
+    }
+  };
+
   return (
-    <div class="min-h-screen flex items-center justify-end bg-cover bg-center" style="background-image: url('/src/pages/images/background.png');">
-      <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md bg-opacity-80 backdrop-filter backdrop-blur-lg">
-        <h2 class="text-3xl font-bold text-center mb-6">K-FOOD</h2>
-        <div class="flex items-center justify-center mb-6">
+    <div class="background-container">
+      <div class="form-container">
+        <h2 class="form-title">K-FOOD</h2>
+        <div class="google-signup-wrapper">
           <a href="https://accounts.google.com/AccountChooser" class="google-signup-btn">
-            <img src="/src/pages/images/Google.png" alt="google-signup" class="google-signup"/>
-            <span class="text-gray-700 ml-2">Daftar menggunakan akun Google</span>
+            <img src="/src/pages/images/Google.png" alt="google-signup" class="google-signup-icon"/>
+            <span class="google-signup-text">Masuk menggunakan akun Google</span>
           </a>
         </div>
-        <form>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-4">
+        <form onSubmit={handleSubmit}>  
+          <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-input" 
+              value={email()} 
+              onInput={(e) => setEmail(e.target.value)} 
+              required 
+            />
           </div>
-          <div class="mb-4">
-            <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
-            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
+          <div class="form-group relative">
+            <label for="password" class="form-label">Kata Sandi:</label>
+            <input 
+              type={showPassword() ? "text" : "password"} 
+              id="password" 
+              name="password" 
+              class="form-input" 
+              value={katasandi()} 
+              onInput={(e) => setKataSandi(e.target.value)} 
+              required 
+            />
+            <img 
+              src={showPassword() ? eyeIcon : eyeOffIcon} 
+              alt="Toggle visibility" 
+              class="password-toggle-icon" 
+              onClick={togglePasswordVisibility} 
+            />
           </div>
-          <div class="mb-6">
-            <label for="password" class="block text-sm font-medium text-gray-700">Kata Sandi:</label>
-            <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
-          </div>
-          <div class="flex flex-col items-center">
-            <a href="/dashboard"></a><button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md mb-4">Masuk</button>
+          <div class="submit-wrapper">
+            <button type="submit" class="submit-btn">Masuk</button>
           </div>
         </form>
       </div>

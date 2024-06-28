@@ -1,30 +1,32 @@
 import { lazy } from 'solid-js';
-// import { Router } from 'solid-app-router';
 import type { RouteDefinition } from '@solidjs/router';
+
+
+const Home = lazy(() => import('./pages/home'));
+const About = lazy(() => import('./pages/about'));
+const RegisterForm = lazy(() => import('./pages/register'));
+const Dashboard = lazy(() => import('./pages/dashboard'));
+const LoginForm = lazy(() => import('./pages/login'));
 
 export const routes: RouteDefinition[] = [
   {
     path: '/',
-    component: lazy(() => import('./pages/home')),
+    component: Home
   },
   {
     path: '/about',
-    component: lazy(() => import('./pages/about')),
-  },
-  {
-    path: '/login',
-    component: lazy(() => import('./pages/login')),
+    component: About
   },
   {
     path: '/register',
-    component: lazy(() => import('./pages/register')),
-  },
-  {
-    path: '/forgotpassword',
-    component: lazy(() => import('./pages/forgotpassword')),
+    component: RegisterForm
   },
   {
     path: '/dashboard',
-    component: lazy(() => import('./pages/dashboard')),
+    component: Dashboard
   },
+  {
+    path: '/login',
+    component: LoginForm
+  }
 ];
