@@ -1,0 +1,291 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f49d72;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+.navbar img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar ul li {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #122363;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: rgb(247, 143, 7);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.content {
+  flex: 1;
+  max-width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.sidebar {
+  background-color: #ebc08c;
+  width: 30%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.card {
+  width: 250px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card p {
+  margin: 10px;
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+.card button {
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #00b91f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 35px;
+  width: 70px;
+  float: right;
+}
+
+.card button:hover {
+  background-color: #189e2e;
+}
+
+.total h1 {
+  font-size: 24px;
+  color: white;
+}
+
+.card-order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-order img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-order p {
+  flex: 1;
+  margin-left: 10px;
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+.card-order span {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+.card-order button {
+  background-color: rgb(214, 11, 11);
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-order button:hover {
+  background-color: rgb(163, 12, 12);
+}
+
+.card-finish button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(247, 143, 7);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-finish button:hover {
+  background-color: rgb(211, 120, 0);
+}
+
+/* Responsiveness */
+
+/* Tablet Landscape to Desktop */
+@media (max-width: 1024px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .content {
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .sidebar {
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .main {
+    padding: 5px;
+  }
+
+  .content {
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .card {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .card button {
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  .card-order {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-order img {
+    margin-bottom: 10px;
+  }
+
+  .card-order p {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .card-order span {
+    margin-left: 0;
+  }
+
+  .card-order button {
+    width: 100%;
+    text-align: center;
+  }
+}

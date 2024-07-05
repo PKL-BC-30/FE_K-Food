@@ -1,20 +1,16 @@
 import { Component, createSignal, onCleanup } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
-import { fetchUsers, User } from '../fetchData';
 import CryptoJS from 'crypto-js';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './login.css';
+import { signInWithGoogle } from './firebaseConfig';
 
-// Dummy user data for authentication (replace with actual JSON data or fetch function)
-const users = [
-  { username: 'user1', password: 'password123' },
-  { username: 'user2', password: 'password456' }
-];
-
-interface FormData {
+interface User {
   email: string;
   katasandi: string;
+  namaDepan: string;
+  namaBelakang: string;
 }
 
 const LoginForm: Component = () => {
@@ -23,7 +19,6 @@ const LoginForm: Component = () => {
   const [showPassword, setShowPassword] = createSignal(false);
   const navigate = useNavigate();
 
-  // Cleanup function to handle component unmounting
   onCleanup(() => {
     // Perform cleanup tasks if necessary
   });
@@ -32,65 +27,33 @@ const LoginForm: Component = () => {
     setShowPassword(!showPassword());
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    const formData: FormData = {
-      email: email(),
-      katasandi: katasandi()
-    };
+    if (!email() || !katasandi()) {
+      alert("Semua kolom harus diisi!");
+      return;
+    }
 
     const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
+    console.log('hashedPassword:', hashedPassword);
 
     try {
-      const users: User[] = await fetchUsers();
-      const foundUser = users.find(user => user.email === email());
+      const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
+      console.log('Stored users:', users);
       
-      // Save the user data to local storage as an array
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      const updatedUsers = [...existingUsers, formData];
-      localStorage.setItem('users', JSON.stringify(updatedUsers));
+      const foundUser = users.find(user => user.email === email() && user.katasandi === hashedPassword);
+      console.log('foundUser:', foundUser);
 
-      // Update JSON dummy data (example)
-      const dummyData = [...users, formData];
-      console.log(dummyData); // Log the updated dummy data
-
-      const response = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
+      if (foundUser) {
         alert('Berhasil Masuk!');
         navigate('/dashboard'); // Redirect to dashboard
       } else {
-        alert('Gagal Masuk!');
+        alert('Email atau kata sandi salah!');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred');
+      alert('Terjadi kesalahan');
     }
-  };
-
-  const handleSave = () => {
-    const formData: FormData = {
-      email: email(),
-      katasandi: katasandi()
-    };
-
-    // Save the user data to local storage as an array
-    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-    const updatedUsers = [...existingUsers, formData];
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-
-    // Update JSON dummy data (example)
-    const dummyData = [...users, formData];
-    console.log(dummyData); // Log the updated dummy data
-
-    alert('Berhasil masuk!');
-    navigate('/dashboard');
   };
 
   return (
@@ -135,7 +98,7 @@ const LoginForm: Component = () => {
             />
           </div>
           <div class="submit-wrapper">
-            <button type="button" class="submit-btn" onClick={handleSave}>Masuk</button>
+            <button type="submit" class="submit-btn">Masuk</button>
           </div>
         </form>
       </div>
