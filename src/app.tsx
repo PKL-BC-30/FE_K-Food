@@ -1,7 +1,5 @@
 import type { Component } from 'solid-js';
 import { Link, useRoutes, useLocation } from '@solidjs/router';
-import Dashboard from './pages/dashboard';
-
 import { routes } from './routes';
 
 const App: Component = () => {

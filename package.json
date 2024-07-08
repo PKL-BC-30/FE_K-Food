@@ -20,6 +20,9 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
+    "ag-grid-community": "^32.0.0",
+    "ag-grid-react": "^32.0.0",
+    "ag-grid-solid": "^31.1.1",
     "crypto-js": "^4.2.0",
     "firebase": "^10.12.2",
     "html2canvas": "^1.4.1",

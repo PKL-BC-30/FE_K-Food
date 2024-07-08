@@ -1,25 +1,33 @@
 import { Component, createSignal } from 'solid-js';
 import CryptoJS from 'crypto-js';
 import { useNavigate } from '@solidjs/router';
+import eyeIcon from '/src/pages/images/eye.png';
+import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './register.css';
 
 interface User {
-  namaDepan: string;
-  namaBelakang: string;
+  namadepan: string;
+  namabelakang: string;
   email: string;
   katasandi: string;
 }
 
 const RegisterForm: Component = () => {
-  const [namaDepan, setNamaDepan] = createSignal("");
-  const [namaBelakang, setNamaBelakang] = createSignal("");
+  const [namadepan, setNamaDepan] = createSignal("");
+  const [namabelakang, setNamaBelakang] = createSignal("");
   const [email, setEmail] = createSignal("");
   const [katasandi, setKataSandi] = createSignal("");
+  const [showPassword, setShowPassword] = createSignal(false);
   const navigate = useNavigate();
+
+  
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword());
+  };
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
-    if (!namaDepan() || !namaBelakang() || !email() || !katasandi()) {
+    if (!namadepan() || !namabelakang() || !email() || !katasandi()) {
       alert("Semua kolom harus diisi!");
       return;
     }
@@ -29,13 +37,13 @@ const RegisterForm: Component = () => {
       return;
     }
 
-    const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
+    // const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
 
     const newUser: User = {
-      namaDepan: namaDepan(),
-      namaBelakang: namaBelakang(),
+      namadepan: namadepan(),
+      namabelakang: namabelakang(),
       email: email(),
-      katasandi: hashedPassword
+      katasandi: katasandi()
     };
 
     // Save to local storage
@@ -59,25 +67,25 @@ const RegisterForm: Component = () => {
         <h2 class="form-title">Register</h2>
         <form onSubmit={handleSubmit}>
           <div class="form-group">
-            <label for="namaDepan" class="form-label">Nama Depan:</label>
+            <label for="namadepan" class="form-label">Nama Depan:</label>
             <input 
               type="text" 
-              id="namaDepan" 
-              name="namaDepan" 
+              id="namadepan" 
+              name="namadepan" 
               class="form-input" 
-              value={namaDepan()} 
+              value={namadepan()} 
               onInput={(e) => setNamaDepan(e.target.value)} 
               required 
             />
           </div>
           <div class="form-group">
-            <label for="namaBelakang" class="form-label">Nama Belakang:</label>
+            <label for="namabelakang" class="form-label">Nama Belakang:</label>
             <input 
               type="text" 
-              id="namaBelakang" 
-              name="namaBelakang" 
+              id="namabelakang" 
+              name="namabelakang" 
               class="form-input" 
-              value={namaBelakang()} 
+              value={namabelakang()} 
               onInput={(e) => setNamaBelakang(e.target.value)} 
               required 
             />
@@ -97,13 +105,19 @@ const RegisterForm: Component = () => {
           <div class="form-group">
             <label for="katasandi" class="form-label">Kata Sandi:</label>
             <input 
-              type="password" 
+              type={showPassword() ? "text" : "password"} 
               id="katasandi" 
               name="katasandi" 
               class="form-input" 
               value={katasandi()} 
               onInput={(e) => setKataSandi(e.target.value)} 
               required 
+            />
+            <img 
+              src={showPassword() ? eyeIcon : eyeOffIcon} 
+              alt="Toggle visibility" 
+              class="password-toggle-icon" 
+              onClick={togglePasswordVisibility} 
             />
           </div>
           <div class="submit-wrapper">

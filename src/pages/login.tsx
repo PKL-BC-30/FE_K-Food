@@ -4,13 +4,13 @@ import CryptoJS from 'crypto-js';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './login.css';
-import { signInWithGoogle } from './firebaseConfig';
+// import { signInWithGoogle } from './firebaseConfig';
 
 interface User {
   email: string;
   katasandi: string;
-  namaDepan: string;
-  namaBelakang: string;
+  namadepan: string;
+  namabelakang: string;
 }
 
 const LoginForm: Component = () => {
@@ -34,14 +34,14 @@ const LoginForm: Component = () => {
       return;
     }
 
-    const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
-    console.log('hashedPassword:', hashedPassword);
+    // const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
+    // console.log('hashedPassword:', hashedPassword);
 
     try {
       const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
       console.log('Stored users:', users);
       
-      const foundUser = users.find(user => user.email === email() && user.katasandi === hashedPassword);
+      const foundUser = users.find(user => user.email === email() && user.katasandi );
       console.log('foundUser:', foundUser);
 
       if (foundUser) {

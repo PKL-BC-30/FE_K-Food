@@ -1,7 +1,32 @@
 [
-    {"email": "ashel@gmail.com", "katasandi": "123"},
-    {"email": "adel@gmail.com", "katasandi": "123"},
-    {"email": "fely@gmail.com", "katasandi": "123"},
-    {"email": "rea@gmail.com", "katasandi": "123"}
+    {
+    "namadepan": "erida",
+    "namabelakang": "yalma",
+    "email": "erida@gmail.com",
+    "katasandi": "123"
+    },
+    {
+    "namaDepan": "adzana",
+    "namaBelakang": "shaliha",
+    "email": "ashel@gmail.com",
+    "katasandi": "12345678"
+    },
+    {
+    "namaDepan": "reva",
+    "namaBelakang": "fidela",
+    "email": "adel@gmail.com",
+    "katasandi": "12345678"
+    },
+    {
+    "namaDepan": "tata",
+    "namaBelakang": "ananta",
+    "email": "tata@gmail.com",
+    "katasandi": "12345678"
+    },
+    {
+    "namaDepan": "Eridayalma Zahra",
+    "namaBelakang": "Yohar",
+    "email": "erida@gmail.com",
+    "katasandi": "12345678"
+    }
 ]
-  
