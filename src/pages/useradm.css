@@ -1,0 +1,51 @@
+/* useradm.css */
+
+/* Style for the container div */
+.ag-theme-alpine {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the loading paragraph */
+  .ag-theme-alpine p {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* Style for the edit, delete, and update buttons */
+  .ag-theme-alpine button {
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .ag-theme-alpine button:hover {
+    background-color: #45a049;
+  }
+  
+  .ag-theme-alpine button:active {
+    background-color: #3e8e41;
+  }
+  
+  /* Adjust styles for buttons inside cell renderer */
+  .ag-theme-alpine .ag-react-container button {
+    margin-right: 5px;
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+  
+  /* Responsive styles for smaller screens */
+  @media (max-width: 600px) {
+    .ag-theme-alpine .ag-cell {
+      padding: 5px !important;
+    }
+  }
+  

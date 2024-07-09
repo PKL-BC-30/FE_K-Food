@@ -2,6 +2,7 @@ import { createSignal, onMount, Component } from 'solid-js';
 import AgGridSolid from 'ag-grid-solid';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import './useradm.css';
 
 const UserAdmin: Component = () => {
   const [rowData, setRowData] = createSignal([]);
@@ -16,6 +17,12 @@ const UserAdmin: Component = () => {
 
   // Save data to local storage whenever it changes
   const updateRowData = (newData) => {
+    // Assign 'User' role to new entries
+    newData.forEach(entry => {
+      if (!entry.role) { // Only assign role if it's not already set
+        entry.role = 'User';
+      }
+    });
     setRowData(newData);
     localStorage.setItem('users', JSON.stringify(newData));
   };
@@ -24,54 +31,21 @@ const UserAdmin: Component = () => {
     { field: 'namadepan', headerName: 'Nama Depan', editable: true },
     { field: 'namabelakang', headerName: 'Nama Belakang', editable: true },
     { field: 'email', headerName: 'Email', editable: true },
-    { field: 'katasandi', headerName: 'Kata Sandi', editable: true },
+    { field: 'katasandi', headerName: 'Kata Sandi', editable: false }, // Kata Sandi tidak dapat diubah
     {
-      headerName: 'Actions',
-      cellRenderer: (params) => {
-        const container = document.createElement('div');
-
-        const editButton = document.createElement('button');
-        editButton.innerText = 'Edit';
-        editButton.addEventListener('click', () => editUser(params));
-
-        const deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
-        deleteButton.addEventListener('click', () => deleteUser(params.data));
-
-        const updateButton = document.createElement('button');
-        updateButton.innerText = 'Update';
-        updateButton.addEventListener('click', () => updateUser(params));
-
-        container.appendChild(editButton);
-        container.appendChild(deleteButton);
-        container.appendChild(updateButton);
-
-        return container;
-      },
+      headerName: 'Role',
+      field: 'role',
+      editable: true,
+      cellEditor: 'agSelectCellEditor',
+      cellEditorParams: {
+        values: ['Admin', 'User']
+      }
     },
   ];
 
   const defaultColDef = {
     flex: 1,
     minWidth: 150,
-  };
-
-  const editUser = (params) => {
-    console.log('Edit user:', params.data);
-    // Implement edit user logic here
-  };
-
-  const deleteUser = (userToDelete) => {
-    const updatedData = rowData().filter((user) => user.email !== userToDelete.email);
-    updateRowData(updatedData);
-  };
-
-  const updateUser = (params) => {
-    console.log('Update user:', params.data);
-    const updatedData = rowData().map((user) =>
-      user.email === params.data.email ? { ...params.data } : user
-    );
-    updateRowData(updatedData);
   };
 
   return (

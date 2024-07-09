@@ -1,16 +1,13 @@
-import { Component, createSignal, onCleanup } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import CryptoJS from 'crypto-js';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './login.css';
-// import { signInWithGoogle } from './firebaseConfig';
 
 interface User {
   email: string;
-  katasandi: string;
-  namadepan: string;
-  namabelakang: string;
+  katasandi: string; // Disimpan dalam bentuk terenkripsi
 }
 
 const LoginForm: Component = () => {
@@ -19,34 +16,31 @@ const LoginForm: Component = () => {
   const [showPassword, setShowPassword] = createSignal(false);
   const navigate = useNavigate();
 
-  onCleanup(() => {
-    // Perform cleanup tasks if necessary
-  });
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword());
   };
 
-  const handleSubmit = async (e: Event) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault();
     if (!email() || !katasandi()) {
       alert("Semua kolom harus diisi!");
       return;
     }
 
-    // const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
-    // console.log('hashedPassword:', hashedPassword);
-
     try {
       const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
-      console.log('Stored users:', users);
-      
-      const foundUser = users.find(user => user.email === email() && user.katasandi );
-      console.log('foundUser:', foundUser);
+      const foundUser = users.find(user => user.email === email());
 
       if (foundUser) {
-        alert('Berhasil Masuk!');
-        navigate('/dashboard'); // Redirect to dashboard
+        // Decrypt the stored password and compare
+        const decryptedPassword = CryptoJS.AES.decrypt(foundUser.katasandi, 'secret').toString(CryptoJS.enc.Utf8);
+
+        if (decryptedPassword === katasandi()) {
+          alert('Berhasil Masuk!');
+          navigate('/dashboard'); // Redirect to dashboard
+        } else {
+          alert('Email atau kata sandi salah!');
+        }
       } else {
         alert('Email atau kata sandi salah!');
       }

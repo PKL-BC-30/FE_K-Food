@@ -1,5 +1,6 @@
 import { lazy } from 'solid-js';
 import type { RouteDefinition } from '@solidjs/router';
+import UserManagement from './pages/usermanagement';
 // import UserAdmin from './pages/useradm';
 
 
@@ -39,6 +40,10 @@ export const routes: RouteDefinition[] = [
   {
     path: '/useradm',
     component: UserAdmin
+  },
+  {
+    path: '/usermanagement',
+    component: UserManagement
   }
   // {
   //   path: '/listfood',

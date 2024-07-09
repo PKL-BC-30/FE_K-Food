@@ -10,6 +10,7 @@ interface User {
   namabelakang: string;
   email: string;
   katasandi: string;
+  role: string;
 }
 
 const RegisterForm: Component = () => {
@@ -20,7 +21,6 @@ const RegisterForm: Component = () => {
   const [showPassword, setShowPassword] = createSignal(false);
   const navigate = useNavigate();
 
-  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword());
   };
@@ -37,13 +37,12 @@ const RegisterForm: Component = () => {
       return;
     }
 
-    // const hashedPassword = CryptoJS.SHA256(katasandi()).toString(CryptoJS.enc.Hex);
-
     const newUser: User = {
       namadepan: namadepan(),
       namabelakang: namabelakang(),
       email: email(),
-      katasandi: katasandi()
+      katasandi: katasandi(),
+      role: 'User' // Tambahkan peran secara otomatis
     };
 
     // Save to local storage
