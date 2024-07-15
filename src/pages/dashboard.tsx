@@ -1,8 +1,8 @@
-import { Component, createSignal, onCleanup, onMount } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import './dashboard.css';
-import html2canvas from 'html2canvas'; // Import html2canvas
-import jsPDF from 'jspdf'; // Import jspdf
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 const Dashboard: Component = () => {
   const [cart, setCart] = createSignal<{ name: string, price: number, qty: number, img: string }[]>([]);
@@ -10,9 +10,10 @@ const Dashboard: Component = () => {
   const [orderSuccess, setOrderSuccess] = createSignal(false);
   const [printVisible, setPrintVisible] = createSignal(false);
   const [pendingOrder, setPendingOrder] = createSignal(false);
-  const navigate = useNavigate(); // Use navigate for routing
+  const [menuVisible, setMenuVisible] = createSignal(false);
+  const navigate = useNavigate();
+  
 
-  // Define foodItems with stock from localStorage or default
   let foodItems: { name: string, price: number, stock: number, img: string }[] = [
     { name: 'Dumpling Keju', price: 2000, stock: 10, img: './src/pages/images/dumpling keju.png' },
     { name: 'Odeng', price: 3000, stock: 10, img: './src/pages/images/odeng.png' },
@@ -21,18 +22,12 @@ const Dashboard: Component = () => {
     { name: 'Toppoki', price: 1000, stock: 12, img: './src/pages/images/toppoki.png' },
   ];
 
-  // Retrieve foodItems from localStorage if available
   const storedItems = localStorage.getItem('foodItems');
   if (storedItems) {
     foodItems = JSON.parse(storedItems);
   } else {
     localStorage.setItem('foodItems', JSON.stringify(foodItems));
   }
-
-  // Update localStorage when foodItems change
-  onCleanup(() => {
-    localStorage.setItem('foodItems', JSON.stringify(foodItems));
-  });
 
   const addToCart = (item: { name: string, price: number, stock: number, img: string }) => {
     const existingItem = cart().find((cartItem) => cartItem.name === item.name);
@@ -60,7 +55,6 @@ const Dashboard: Component = () => {
       return;
     }
 
-    // Deduct stock when placing order
     cart().forEach(item => {
       const foodIndex = foodItems.findIndex(food => food.name === item.name);
       if (foodIndex !== -1) {
@@ -73,35 +67,48 @@ const Dashboard: Component = () => {
   };
 
   const handlePrint = () => {
-    const element = document.getElementById('printContent'); // Id of the element to print
+    const element = document.getElementById('printContent');
     if (!element) return;
     navigate('/cetakstruk', { state: { cart: cart(), total: total() } });
 
     html2canvas(element).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
-      const imgWidth = 210; // PDF document width in mm
-      const imgHeight = canvas.height * imgWidth / canvas.width; // Scale height based on canvas width
+      const imgWidth = 210;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
       pdf.save('struk_pembelian.pdf');
-
-      // navigate('/cetakstruk', { state: { cart: cart(), total: total() } });
     });
   };
 
   const handleOk = () => {
-    setPendingOrder(false); // Setel pendingOrder kembali ke false setelah stok berkurang
-    setPrintVisible(true); // Tampilkan tombol "Print Struk"
+    setPendingOrder(false);
+    setPrintVisible(true);
   };
+  const handleMenuToggle = () => {
+    setMenuVisible(!menuVisible());
+    // Tambahkan class 'menu-open' ke body untuk mengontrol transisi dan tampilan menu
+    document.body.classList.toggle('menu-open', menuVisible());
+  };
+  
 
   return (
     <div class="min-h-screen bg-gray-100">
       <div class="navbar">
-        <img src="./src/pages/images/K-Food_Logo.png" alt="Logo" />
+        <button class="menu-button" onClick={() => setMenuVisible(!menuVisible())}>
+          <span class="menu-icon">&#9776;</span>
+        </button>
+        <img src="./src/pages/images/K-Food_Logo.png" alt="Logo" class="logo"/>
+        <div class="ktt">K-Taste Tally</div>
+      </div>
+      <div class={`menu ${menuVisible() ? 'open' : ''}`}>
         <ul>
-          <li><a href="./dashboard">Daftar Makanan</a></li>
-          <li><a href="./about">Tentang Kami</a></li>
+          <li><a href="./dashboard" onClick={() => setMenuVisible(false)}>Daftar Makanan</a></li>
+          <li><a href="./about" onClick={() => setMenuVisible(false)}>Tentang Kami</a></li>
         </ul>
+        <div class="logout">
+          <a href="./login" onClick={() => setMenuVisible(false)}>Keluar</a>
+        </div>
       </div>
       <div class="main">
         <div class="content" id="foodList">
@@ -126,7 +133,7 @@ const Dashboard: Component = () => {
                 <p>{item.name}</p>
                 <span>{item.qty}</span>
               </div>
-              <button onClick={() => removeFromCart(index)}><i class="fas fa-trash"></i> Hapus</button>
+              <button onClick={() => removeFromCart(index)} class="btn-hps"><i class="fas fa-trash"></i> Hapus</button>
             </div>
           ))}
           <div class="card-finish">
@@ -144,7 +151,6 @@ const Dashboard: Component = () => {
           </div>
         </div>
       </div>
-      {/* Element untuk menampilkan struk pembelian */}
       <div id="printContent" style={{ display: 'none' }}>
         <h2>Struk Pembelian</h2>
         <hr />
@@ -161,6 +167,7 @@ const Dashboard: Component = () => {
         </ul>
       </div>
     </div>
+    
   );
 };
 

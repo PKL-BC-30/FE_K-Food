@@ -49,7 +49,7 @@ const UserAdmin: Component = () => {
   };
 
   return (
-    <div class="ag-theme-alpine" style={{ height: '500px', width: '100%' }}>
+    <div class="ag-theme-alpine" style={{ height: '1500px', width: '100%' }}>
       {/* Ensure Ag-Grid is properly initialized */}
       {rowData().length > 0 ? (
         <AgGridSolid

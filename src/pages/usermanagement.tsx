@@ -1,10 +1,13 @@
-import { createSignal, onMount} from 'solid-js';
+import { createSignal, onMount } from 'solid-js';
 import AgGridSolid from 'ag-grid-solid';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import './useradm.css';
 
 const UserManagement = () => {
   const [rowData, setRowData] = createSignal([]);
+  const [showForm, setShowForm] = createSignal(false);
+  const [newUser, setNewUser] = createSignal({ namadepan: '', namabelakang: '', email: '', katasandi: '', role: 'User' });
 
   onMount(() => {
     const savedData = localStorage.getItem('users');
@@ -16,6 +19,19 @@ const UserManagement = () => {
   const updateRowData = (newData) => {
     setRowData(newData);
     localStorage.setItem('users', JSON.stringify(newData));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewUser({ ...newUser(), [name]: value });
+  };
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const updatedData = [...rowData(), newUser()];
+    updateRowData(updatedData);
+    setNewUser({ namadepan: '', namabelakang: '', email: '', katasandi: '', role: 'User' });
+    setShowForm(false);
   };
 
   const columnDefs = [
@@ -86,7 +102,45 @@ const UserManagement = () => {
   };
 
   return (
-    <div class="ag-theme-alpine" style={{ height: '500px', width: '100%' }}>
+    <div class="ag-theme-alpine" style={{ height: '1000px', width: '100%' }}>
+      <button onClick={() => setShowForm(true)} class='btn-tambah'>Tambah User</button>
+      {showForm() && (
+        <form onSubmit={handleAddUser}>
+          <input
+            type="text"
+            name="namadepan"
+            placeholder="Nama Depan"
+            value={newUser().namadepan}
+            onInput={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="namabelakang"
+            placeholder="Nama Belakang"
+            value={newUser().namabelakang}
+            onInput={handleInputChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={newUser().email}
+            onInput={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="katasandi"
+            placeholder="Kata Sandi"
+            value={newUser().katasandi}
+            onInput={handleInputChange}
+            required
+          />
+          <button type="submit">Tambahkan</button>
+        </form>
+      )}
       {rowData().length > 0 ? (
         <AgGridSolid
           columnDefs={columnDefs}

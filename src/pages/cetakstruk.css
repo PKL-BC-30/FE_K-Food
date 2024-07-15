@@ -1,3 +1,9 @@
+/* Set the background color to pink for the entire page */
+body {
+  background-color: pink !important;
+}
+
+/* The rest of your existing CSS */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -98,4 +104,4 @@ body {
     width: 100%;
     font-size: 16px;
   }
-}
+} 

@@ -1,5 +1,4 @@
 import { Component, createSignal } from 'solid-js';
-import CryptoJS from 'crypto-js';
 import { useNavigate } from '@solidjs/router';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
@@ -53,10 +52,6 @@ const RegisterForm: Component = () => {
     alert('Berhasil Daftar!');
     
     // Redirect to login page
-    navigate('/login');
-  };
-
-  const handleLoginClick = () => {
     navigate('/login');
   };
 

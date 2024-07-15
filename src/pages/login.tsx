@@ -1,13 +1,13 @@
 import { Component, createSignal } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
-import CryptoJS from 'crypto-js';
 import eyeIcon from '/src/pages/images/eye.png';
 import eyeOffIcon from '/src/pages/images/eye-off.png';
 import './login.css';
 
 interface User {
   email: string;
-  katasandi: string; // Disimpan dalam bentuk terenkripsi
+  katasandi: string;
+  role: string;
 }
 
 const LoginForm: Component = () => {
@@ -31,15 +31,14 @@ const LoginForm: Component = () => {
       const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
       const foundUser = users.find(user => user.email === email());
 
-      if (foundUser) {
-        // Decrypt the stored password and compare
-        const decryptedPassword = CryptoJS.AES.decrypt(foundUser.katasandi, 'secret').toString(CryptoJS.enc.Utf8);
-
-        if (decryptedPassword === katasandi()) {
-          alert('Berhasil Masuk!');
-          navigate('/dashboard'); // Redirect to dashboard
+      if (foundUser && foundUser.katasandi === katasandi()) {
+        alert('Berhasil Masuk!');
+        
+        // Cek role pengguna
+        if (foundUser.role === 'Admin') {
+          navigate('/useradm'); // Redirect to user admin page
         } else {
-          alert('Email atau kata sandi salah!');
+          navigate('/dashboard'); // Redirect to dashboard
         }
       } else {
         alert('Email atau kata sandi salah!');
