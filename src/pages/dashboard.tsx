@@ -12,7 +12,6 @@ const Dashboard: Component = () => {
   const [pendingOrder, setPendingOrder] = createSignal(false);
   const [menuVisible, setMenuVisible] = createSignal(false);
   const navigate = useNavigate();
-  
 
   let foodItems: { name: string, price: number, stock: number, img: string }[] = [
     { name: 'Dumpling Keju', price: 2000, stock: 10, img: './src/pages/images/dumpling keju.png' },
@@ -85,12 +84,11 @@ const Dashboard: Component = () => {
     setPendingOrder(false);
     setPrintVisible(true);
   };
+  
   const handleMenuToggle = () => {
     setMenuVisible(!menuVisible());
-    // Tambahkan class 'menu-open' ke body untuk mengontrol transisi dan tampilan menu
     document.body.classList.toggle('menu-open', menuVisible());
   };
-  
 
   return (
     <div class="min-h-screen bg-gray-100">
@@ -98,7 +96,7 @@ const Dashboard: Component = () => {
         <button class="menu-button" onClick={() => setMenuVisible(!menuVisible())}>
           <span class="menu-icon">&#9776;</span>
         </button>
-        <img src="./src/pages/images/K-Food_Logo.png" alt="Logo" class="logo"/>
+        <img src="./src/pages/images/K-TasteTally.png" alt="Logo" class="logo"/>
         <div class="ktt">K-Taste Tally</div>
       </div>
       <div class={`menu ${menuVisible() ? 'open' : ''}`}>
@@ -127,7 +125,7 @@ const Dashboard: Component = () => {
             <hr />
           </div>
           {cart().map((item, index) => (
-            <div class="card-order" key={item.name}>
+            <div class="card-order" key={`${item.name}-${index}`}>
               <div class="detail">
                 <img src={item.img} alt={item.name} />
                 <p>{item.name}</p>
@@ -157,7 +155,7 @@ const Dashboard: Component = () => {
         <h3>Total Pembelian: Rp {total()},00</h3>
         <ul>
           {cart().map(item => (
-            <li key={item.name}>
+            <li key={`${item.name}-${item.qty}`}>
               <p>Nama: {item.name}</p>
               <p>Jumlah: {item.qty}</p>
               <p>Harga Satuan: Rp {item.price},00</p>
@@ -167,7 +165,6 @@ const Dashboard: Component = () => {
         </ul>
       </div>
     </div>
-    
   );
 };
 

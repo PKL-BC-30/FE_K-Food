@@ -1,51 +1,77 @@
 /* useradm.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Style for the container div */
-.ag-theme-alpine {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 20px;
+/* Container style */
+.user-admin-container {
+  background-color: #f8f9fa; /* Background color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Page header style */
+.page-header {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem; /* Heading font size */
+  color: #333; /* Heading text color */
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: #666; /* Subheading text color */
+}
+
+/* Loading message style */
+.ag-theme-alpine p {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: #777; /* Loading text color */
+}
+
+/* Button style */
+.ag-theme-alpine button {
+  cursor: pointer;
+  margin-right: 5px;
+  padding: 10px 20px; /* Button padding */
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.ag-theme-alpine .btn-edit {
+  background-color: #007bff; /* Edit button color */
+  color: white;
+}
+
+.ag-theme-alpine .btn-delete {
+  background-color: #dc3545; /* Delete button color */
+  color: white;
+}
+
+.ag-theme-alpine .btn-update {
+  background-color: #28a745; /* Update button color */
+  color: white;
+}
+
+.ag-theme-alpine button:hover {
+  transform: translateY(-2px); /* Button hover effect */
+}
+
+.ag-theme-alpine button:active {
+  transform: translateY(1px); /* Button active effect */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .ag-theme-alpine .ag-cell {
+    padding: 5px !important; /* Cell padding adjustment for smaller screens */
   }
-  
-  /* Style for the loading paragraph */
-  .ag-theme-alpine p {
-    text-align: center;
-    padding: 20px;
-    font-size: 1.2rem;
-  }
-  
-  /* Style for the edit, delete, and update buttons */
-  .ag-theme-alpine button {
-    cursor: pointer;
-    margin-right: 5px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 3px;
-    background-color: #4caf50;
-    color: white;
-    font-size: 0.9rem;
-  }
-  
-  .ag-theme-alpine button:hover {
-    background-color: #45a049;
-  }
-  
-  .ag-theme-alpine button:active {
-    background-color: #3e8e41;
-  }
-  
-  /* Adjust styles for buttons inside cell renderer */
-  .ag-theme-alpine .ag-react-container button {
-    margin-right: 5px;
-    padding: 5px 8px;
-    font-size: 0.8rem;
-  }
-  
-  /* Responsive styles for smaller screens */
-  @media (max-width: 600px) {
-    .ag-theme-alpine .ag-cell {
-      padding: 5px !important;
-    }
-  }
-  
+}

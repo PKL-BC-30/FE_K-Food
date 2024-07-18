@@ -2,7 +2,7 @@ import { createSignal, onMount } from 'solid-js';
 import AgGridSolid from 'ag-grid-solid';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import './useradm.css';
+import './usermanagement.css';
 
 const UserManagement = () => {
   const [rowData, setRowData] = createSignal([]);
@@ -55,14 +55,17 @@ const UserManagement = () => {
 
         const editButton = document.createElement('button');
         editButton.innerText = 'Edit';
+        editButton.classList.add('action-button', 'edit-button');
         editButton.addEventListener('click', () => editUser(params));
 
         const deleteButton = document.createElement('button');
         deleteButton.innerText = 'Delete';
+        deleteButton.classList.add('action-button', 'delete-button'); 
         deleteButton.addEventListener('click', () => deleteUser(params.data));
 
         const updateButton = document.createElement('button');
         updateButton.innerText = 'Update';
+        updateButton.classList.add('action-button', 'update-button');
         updateButton.addEventListener('click', () => updateUser(params));
 
         container.appendChild(editButton);

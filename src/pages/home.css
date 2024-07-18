@@ -1,236 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.home-container {
+header {
+  color: black;
+  padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+}
+
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  color: black;
+  margin-left: 1000px;
+}
+.title {
+  font-size: 15px;
+  font-family: 'Montserrat';
+  margin-left: 15px;
+}
+
+header nav ul li a {
+  color: black;
+  text-decoration: none;
+  font-family: 'Poppins';
+  /* margin-right: 30px; */
+}
+
+.hero {
   text-align: center;
   padding: 2rem;
-  background-image: url('src/images/background.png');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
 }
 
-.home-content {
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.home-content:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.home-image-container {
-  margin-bottom: 2rem;
-}
-
-.home-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.home-text {
-  margin-top: 1rem;
-}
-
-.home-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #333;
-  letter-spacing: -1px;
-}
-
-.home-description {
-  font-size: 1.5rem;
-  margin-bottom: 2.5rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-.home-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.home-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-}
-
-.home-button:hover {
-  transform: scale(1.05);
-}
-
-.primary-button {
-  background-color: #ff6b6b;
-  color: #fff;
-}
-
-.primary-button:hover {
-  background-color: #ff4b4b;
-}
-
-.secondary-button {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.secondary-button:hover {
-  background-color: #43a047;
-}
-
-.additional-info {
-  margin-top: 3rem;
-  text-align: left;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.additional-title {
-  font-size: 2.5rem;
-  font-weight: bold;
+.hero h2 {
+  font-size: 45px;
   margin-bottom: 1rem;
-  color: #333;
+  text-align: left;
+  font-family: 'Poppins';
 }
 
-.additional-list {
-  list-style-type: disc;
-  padding-left: 1.5rem;
+.hero h2 span {
+  display: block; /* Membuat setiap span menjadi blok */
 }
 
-.additional-item {
-  font-size: 1.25rem;
-  color: #666;
-  margin-bottom: 0.75rem;
+.hero button {
+  padding: 0.5rem 1rem;
+  color: white;
+  margin-bottom: 1rem;
+  background-color: #FF4C4C;
+  border-radius: 50px;
+  float: left;
+  width: 350px;
+  height: 70px;
+  font-size: 17px;
+  font-family: 'Poppins';
+  text-align: left;
+  margin-right: 20px;
 }
 
-.testimonials {
-  margin-top: 4rem;
+
+
+
+.img-icon {
+  margin-top: -240px;
+  margin-right: -500px;
+  width: 350px;
+  height: 350px;
+}
+.panah-ic {
+  width: 20px; /* Lebar panah */
+  height: 20px; /* Tinggi panah */
+  position: absolute; /* Posisi absolut */
+  left: 20; /* Posisi di sebelah kiri */
+  right: 995px;
+  top: 66%; /* Posisi di tengah vertikal */
+  transform: translateY(-50%); /* Pusatkan vertikal */
+}
+
+.menu {
+  padding: 2rem;
+  background-color: #f9f9f9;
   text-align: center;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.testimonials-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #333;
-}
-
-.testimonial {
-  background: #fff;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.testimonial:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.testimonial-text {
-  font-size: 1.25rem;
-  color: #555;
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
-}
-
-.testimonial-author {
-  font-size: 1.125rem;
-  color: #333;
-  font-weight: bold;
-}
-
-.features {
-  margin-top: 4rem;
-  text-align: left;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.features-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #333;
-}
-
-.feature-item {
+.menu h2 {
   margin-bottom: 2rem;
+  text-align: right;
+  font-size: 28px;
+  margin-left: 910px;
+  font-family: 'Poppins';
+  margin-top: 5px;
+  position: absolute;
 }
 
-.feature-title {
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin-bottom: 0.75rem;
-  color: #333;
+.menu p span {
+  text-align: left; /* Memastikan teks tetap rata kiri di dalam flex container */
+  width: 100%; /* Mengisi semua ruang yang tersedia */
 }
 
-.feature-description {
-  font-size: 1.25rem;
-  color: #666;
-  line-height: 1.6;
+.menu .menu-items {
+  display: flex;
+  justify-content: left;
+  gap: 2rem; /* Tinggikan elemen sesuai keinginan */
 }
 
-.contact {
-  margin-top: 4rem;
+
+.menu .menu-item {
+  background: #FF4C4C;
+  margin-left: 15px;
+  padding: 1rem;
+  margin-top: -50px;
+  border-radius: 12px;
+  color: white;
+  width: 200px; /* Lebarkan elemen sampai ke tepi kontainer */
+  height: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.menu-description {
+  display: flex;
   text-align: left;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  justify-content: flex-end;
+  text-align: left; /* Rata kiri teks */
+  position: absolute; /* Posisi absolut */
+  top: 112%; /* Posisi di tengah vertikal */
+  right: 0; /* Posisi di kanan */
+  transform: translateY(-50%); /* Pusatkan vertikal */
+  width: 30%; /* Lebar relatif */
+  padding: 0; /* Padding kanan kiri */
+  font-size: 16px;
+  font-family: 'Montserrat';
 }
 
-.contact-title {
-  font-size: 2.5rem;
-  font-weight: bold;
+.menu .menu-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
   margin-bottom: 1rem;
-  color: #333;
 }
 
-.contact-description {
-  font-size: 1.25rem;
-  color: #666;
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
+.menu .menu-item p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  justify-content: center;
+  font-family: 'Poppins';
 }
 
-.contact-info {
-  font-size: 1.25rem;
-  color: #333;
+.menu .menu-item span {
   font-weight: bold;
+  color: black;
+  font-family: 'Poppins';
+}
+
+.highlight {
+  padding: 2rem;
+  text-align: center;
+}
+
+.highlight h2 {
+  margin-bottom: 1rem;
+  margin-left: 15px;
+  padding-top: 90px;
+  text-align: left;
+  font-family: 'Poppins';
+  font-size: 28px;
+}
+
+.highlight img {
+  width: 400px;
+  height: 390px;
+  max-width: 300px;
+  margin: 3rem ;
+  margin-right: -200px;
+  margin-top: -50px;
+}
+
+.harga {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff6600;
+  background-color: black;
+  padding: 8px 12px;
+  border-radius: 20px; /* Sesuaikan ukuran lingkaran sesuai keinginan Anda */
+  margin-right: -800px;
+  margin-top: 100px;
+}
+.desk {
+  font-size: 1.2rem;
+  font-weight: normal;
+  font-family: 'Montserrat';
+  color: #000000; /* Warna teks *//* Warna latar belakang */
+  padding: 20px; /* Ruang di sekitar teks */
+  border-radius: 10px; /* Membuat sudut yang membulat */
+  border: 1px solid #ddd; /* Garis tepi yang halus */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek elevasi */
+  max-width: 600px; /* Lebar maksimum */
+  margin: 20px auto; /* Posisikan di tengah dengan ruang di atas dan bawah */
+  line-height: 1.6; /* Jarak antar baris teks */
+  text-align: left;
+  margin-left: 15px;
+  margin-top: -395px;
+  margin-bottom: 190px;
+}
+
+
+
+.reservation button {
+  padding: 0.5rem 1rem;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.footer-section h3 {
+  margin-bottom: 1rem;
+  font-family: 'Poppins';
+}
+
+.footer-section p {
+  margin: 0.5rem 0;
+  font-family: 'Poppins';
 }

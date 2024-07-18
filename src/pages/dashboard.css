@@ -46,9 +46,9 @@ body {
 .menu {
   position: absolute;
   top: 75px;
-  left: -300px; /* Menu di luar tampilan awalnya */
+  left: -300px;
   width: 300px;
-  height: calc(100vh - 75px); /* Menghitung tinggi menu agar sesuai dengan tinggi layar */
+  height: calc(100vh - 75px);
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;

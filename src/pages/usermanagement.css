@@ -1,0 +1,92 @@
+/* useradm.css */
+
+/* Container style */
+.ag-theme-alpine {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+/* Button style */
+.btn-tambah {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 1rem; /* Adjusted font size for consistency */
+}
+
+.btn-tambah:hover {
+  background-color: #004286;
+}
+
+.btn-tambah:active {
+  background-color: #004286;
+}
+.action-button {
+  background-color: #007bff; /* Warna latar belakang biru */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-right: 5px;
+}
+
+.action-button:hover {
+  background-color: #0056b3; /* Warna biru lebih gelap saat hover */
+}
+
+.action-button:active {
+  background-color: #004286; /* Warna biru lebih gelap saat tombol ditekan */
+}
+
+/* Memberi jarak antara tombol-tombol */
+/* .ag-theme-alpine .ag-react-container .action-button {
+  margin-right: 5px;
+} */
+
+/* Form style */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  flex: 1;
+  padding: 12px; /* Increased padding for better input field visibility */
+  margin: 8px; /* Adjusted margin for spacing consistency */
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded border for a softer look */
+  font-size: 1rem;
+}
+
+form button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Adjusted padding for better button visibility */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+form button[type="submit"]:active {
+  background-color: #004286;
+}
+
+/* Ag-Grid style adjustments */
+

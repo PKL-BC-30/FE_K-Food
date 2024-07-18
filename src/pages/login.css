@@ -12,8 +12,8 @@
 
 .form-container {
   width: 100%;
-  max-width: 450px;
-  height: 400px;
+  max-width: 455px;
+  height: 450px;
   margin-right: 100px;
   margin-left: 650px;
   padding: 1.5rem;
@@ -66,6 +66,7 @@
 
 .form-group {
   margin-bottom: 1rem;
+  
 }
 
 .form-label {
@@ -74,6 +75,7 @@
   font-weight: 500;
   color: #4a4a4a;
   margin-bottom: 0.5rem;
+  margin-left: 10px;
 }
 
 .form-input {
@@ -95,6 +97,7 @@
 
 .submit-wrapper {
   text-align: center;
+  margin-left: 190px;
 }
 
 .submit-btn {

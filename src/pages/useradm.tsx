@@ -49,17 +49,23 @@ const UserAdmin: Component = () => {
   };
 
   return (
-    <div class="ag-theme-alpine" style={{ height: '1500px', width: '100%' }}>
-      {/* Ensure Ag-Grid is properly initialized */}
-      {rowData().length > 0 ? (
-        <AgGridSolid
-          columnDefs={columnDefs}
-          rowData={rowData()}
-          defaultColDef={defaultColDef}
-        />
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div class="user-admin-container">
+      <div class="page-header">
+        <h1>User-Admin Page</h1>
+        <p>User information and role.</p>
+      </div>
+      <div class="ag-theme-alpine" style={{ height: '1500px', width: '100%' }}>
+        {/* Ensure Ag-Grid is properly initialized */}
+        {rowData().length > 0 ? (
+          <AgGridSolid
+            columnDefs={columnDefs}
+            rowData={rowData()}
+            defaultColDef={defaultColDef}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };
