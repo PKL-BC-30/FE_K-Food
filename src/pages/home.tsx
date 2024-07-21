@@ -12,6 +12,7 @@ const Home: Component = () => {
             <li><a href="/">Home</a></li>
             <li><a href="/dashboard">Menu</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/login">Masuk</a></li>
             {/* <li><a href="#">Contact</a></li> */}
           </ul>
         </nav>
@@ -38,6 +39,9 @@ const Home: Component = () => {
         <p class= "menu-description">
         Menu best seller jajanan street food Korea seperti tteokbokki, rabboki, dan odeng (sup ikan rebus) menawarkan kombinasi rasa khas Korea, dari pedas dan gurih hingga manis. Ini sangat dicari oleh penggemar street food di seluruh dunia.
         </p>
+        <br />
+        <br />
+        <br />
         <div class="menu-items">
           <div class="menu-item">
             <img src="/src/pages/images/15.png" class="odeng-img" />
@@ -61,22 +65,11 @@ const Home: Component = () => {
 
       <footer>
         <div class="footer-section">
-          <h3>Our services</h3>
-          <p>Food Ordering</p>
-          <p>Table Booking</p>
-          <p>Feedback</p>
-        </div>
-        <div class="footer-section">
-          <h3>Our company</h3>
-          <p>Our team</p>
-          <p>Promotion</p>
-          <p>FAQs</p>
-        </div>
-        <div class="footer-section">
-          <h3>Address</h3>
-          <p>Algeria</p>
+          <img src="/src/pages/images/K-TasteTally.png" class="img-icon-footer" />
+          <h3>&copy; 2024 K-Taste Tally. All rights reserved.</h3>
+          {/* <p>Algeria</p>
           <p>+213 99 99 99 99</p>
-          <p>email@example.com</p>
+          <p>email@example.com</p> */}
         </div>
       </footer>
     </div>
