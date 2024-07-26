@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, createEffect } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import './dashboard.css';
 import html2canvas from 'html2canvas';
@@ -11,6 +11,7 @@ const Dashboard: Component = () => {
   const [printVisible, setPrintVisible] = createSignal(false);
   const [pendingOrder, setPendingOrder] = createSignal(false);
   const [menuVisible, setMenuVisible] = createSignal(false);
+  const [userName, setUserName] = createSignal<string | null>(null); 
   const navigate = useNavigate();
 
   let foodItems: { name: string, price: number, stock: number, img: string }[] = [
@@ -20,6 +21,14 @@ const Dashboard: Component = () => {
     { name: 'Chikuwa', price: 2000, stock: 12, img: './src/pages/images/chikuwa.png' },
     { name: 'Toppoki', price: 1000, stock: 12, img: './src/pages/images/toppoki.png' },
   ];
+
+  // Initialize userName from localStorage
+  createEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      setUserName(JSON.parse(storedUser).name);
+    }
+  });
 
   const storedItems = localStorage.getItem('foodItems');
   if (storedItems) {
@@ -98,6 +107,12 @@ const Dashboard: Component = () => {
         </button>
         <img src="./src/pages/images/K-TasteTally.png" alt="Logo" class="logo"/>
         <div class="ktt">K-Taste Tally</div>
+        <div class="user">
+          <p>{userName() ? `Hello, ${userName()}` : 'User'}</p> {/* Display user name */}
+        </div>
+        <div class="icon">
+          <img src="/src/pages/images/icon-account.png"/>
+        </div>
       </div>
       <div class={`menu ${menuVisible() ? 'open' : ''}`}>
         <ul>

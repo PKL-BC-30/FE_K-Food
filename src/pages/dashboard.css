@@ -36,6 +36,16 @@ body {
   margin-right: auto; /* Menjadikan logo dan tulisan K-Taste Tally berada di sisi kiri */
 }
 
+.icon img{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+
 .menu-button {
   background: none;
   border: none;
@@ -100,6 +110,7 @@ body {
   height: 100px;
   object-fit: cover;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .pesan {

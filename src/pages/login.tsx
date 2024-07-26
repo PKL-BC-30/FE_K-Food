@@ -90,8 +90,14 @@ const LoginForm: Component = () => {
               onClick={togglePasswordVisibility} 
             />
           </div>
+          <div class="forgot-password">
+            <a href="/forgotpassword" class="forgot-password">Lupa kata sandi?</a>
+          </div>
           <div class="submit-wrapper">
             <button type="submit" class="submit-btn">Masuk</button>
+          </div>
+          <div class="register-link">
+            Belum memiliki akun? <a href="/register" class="register-link-text">Daftar</a>
           </div>
         </form>
       </div>

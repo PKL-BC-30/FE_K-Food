@@ -7,13 +7,14 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  width: 1365px;
   font-family: 'Poppins';
 }
 
 .form-container {
   width: 100%;
   max-width: 455px;
-  height: 450px;
+  height: 550px;
   margin-right: 100px;
   margin-left: 650px;
   padding: 1.5rem;
@@ -115,6 +116,10 @@
 .submit-btn:hover {
   background-color: #0056b3;
 }
+.forgot-password {
+  margin-left: 150px;
+  padding-bottom: 20px;
+}
 
 .login-link {
   margin-top: 1rem;
@@ -131,10 +136,13 @@
 .password-toggle-icon {
   position: absolute;
   right: 20px;
-  top: 71%;
+  top: 57%;
   transform: translateY(-50%);
   cursor: pointer;
   width: 20px;
   height: 20px;
 }
-
+.register-link{
+  padding-top: 10px;
+  margin-left: 120px;
+}

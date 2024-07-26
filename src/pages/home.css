@@ -9,8 +9,6 @@ body {
 }
 
 header {
-  color: black;
-  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -125,11 +123,10 @@ header nav ul li a {
 
 .menu-description {
   text-align: left;
-  justify-content: flex-end;
   text-align: left; /* Rata kiri teks */
-  position: absolute; /* Posisi absolut */
-  top: 112%; /* Posisi di tengah vertikal */
-  right: 0; /* Posisi di kanan */
+  position: relative; /* Posisi absolut */
+  margin-top: 100px;
+  left: 910px; /* Posisi di tengah vertikal *//* Posisi di kanan */
   transform: translateY(-50%); /* Pusatkan vertikal */
   width: 30%; /* Lebar relatif */
   padding: 0; /* Padding kanan kiri */

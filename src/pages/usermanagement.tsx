@@ -38,7 +38,7 @@ const UserManagement = () => {
     { field: 'namadepan', headerName: 'Nama Depan', editable: true },
     { field: 'namabelakang', headerName: 'Nama Belakang', editable: true },
     { field: 'email', headerName: 'Email', editable: true },
-    { field: 'katasandi', headerName: 'Kata Sandi', editable: false },
+    { field: 'katasandi', headerName: 'Kata Sandi', editable: true },
     {
       headerName: 'Role',
       field: 'role',
@@ -53,10 +53,10 @@ const UserManagement = () => {
       cellRenderer: (params) => {
         const container = document.createElement('div');
 
-        const editButton = document.createElement('button');
-        editButton.innerText = 'Edit';
-        editButton.classList.add('action-button', 'edit-button');
-        editButton.addEventListener('click', () => editUser(params));
+        // const editButton = document.createElement('button');
+        // // editButton.innerText = 'Edit';
+        // // editButton.classList.add('action-button', 'edit-button');
+        // // editButton.addEventListener('click', () => editUser(params));
 
         const deleteButton = document.createElement('button');
         deleteButton.innerText = 'Delete';
@@ -68,7 +68,7 @@ const UserManagement = () => {
         updateButton.classList.add('action-button', 'update-button');
         updateButton.addEventListener('click', () => updateUser(params));
 
-        container.appendChild(editButton);
+        // container.appendChild(editButton);
         container.appendChild(deleteButton);
         container.appendChild(updateButton);
 
@@ -82,13 +82,13 @@ const UserManagement = () => {
     minWidth: 150,
   };
 
-  const editUser = (params) => {
-    console.log('Edit user:', params.data);
-    params.api.startEditingCell({
-      rowIndex: params.rowIndex,
-      colKey: params.column.colId,
-    });
-  };
+  // const editUser = (params) => {
+  //   console.log('Edit user:', params.data);
+  //   params.api.startEditingCell({
+  //     rowIndex: params.rowIndex,
+  //     colKey: params.column.colId,
+  //   });
+  // };
 
   const deleteUser = (userToDelete) => {
     const updatedData = rowData().filter((user) => user.email !== userToDelete.email);
@@ -105,7 +105,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div class="ag-theme-alpine" style={{ height: '1000px', width: '100%' }}>
+    <div class="ag-theme-alpine" style={{ height: '900px', width: '1200px' }}>
       <button onClick={() => setShowForm(true)} class='btn-tambah'>Tambah User</button>
       {showForm() && (
         <form onSubmit={handleAddUser}>

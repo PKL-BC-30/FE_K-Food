@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 1365px;
   min-height: 100vh;
   font-family: 'Poppins';
 }
@@ -146,7 +147,7 @@
 .password-toggle-icon {
   position: absolute;
   right: 95px;
-  top: 485px;
+  top: 470px;
   transform: translateY(-50%);
   cursor: pointer;
   width: 20px;
