@@ -33,6 +33,12 @@ header nav ul li a {
   text-decoration: none;
   font-family: 'Poppins';
 }
+.home-container{
+  margin-top: 400px;
+  width: 1340px;
+  height: 1000px;
+  position: relative;
+}
 
 .hero {
   text-align: center;
@@ -75,11 +81,9 @@ header nav ul li a {
 .panah-ic {
   width: 20px; /* Lebar panah */
   height: 20px; /* Tinggi panah */
-  position: absolute; /* Posisi absolut */
-  left: 325px; /* Posisi di sebelah kiri */
-  right: 995px;
-  top: 65%; /* Posisi di tengah vertikal */
-  transform: translateY(-50%); /* Pusatkan vertikal */
+  position: absolute;
+  left: 340px;
+  top: 370px;
 }
 
 .menu {
@@ -101,6 +105,9 @@ header nav ul li a {
 .menu p span {
   text-align: left; /* Memastikan teks tetap rata kiri di dalam flex container */
   width: 100%; /* Mengisi semua ruang yang tersedia */
+}
+.container {
+  position: relative;
 }
 
 .menu .menu-items {
@@ -209,11 +216,13 @@ header nav ul li a {
 
 footer {
   background-color: #333;
-  height: 10px;
+  width: 1260px;
+  height: 3px;
   color: white;
+  align-items: center;
   display: flex;
-  justify-content: space-around;
-  padding: 3.2rem;
+  justify-content: center;
+  padding: 2.5rem;
 }
 
 .footer-section h3 {

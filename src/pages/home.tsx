@@ -26,7 +26,7 @@ const Home: Component = () => {
         </h2>
         <button>View More</button>
         <img src="/src/pages/images/icon.png" class="img-icon" />
-        <img src="/src/pages/images/panah.png" class="panah-ic" />
+        <img src="/src/pages/images/panah.png" class="panah-ic" alt="Arrow Icon" />
         <br />
         <br />
         <br />
